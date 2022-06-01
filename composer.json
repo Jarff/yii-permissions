@@ -1,0 +1,29 @@
+{
+    "name": "soft-box/yii-permissions",
+    "description": "Yii permissions handler",
+    "type": "package",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Rod",
+            "email": "rodsaseg@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.0.0",
+        "soft-box/yii": "^1.0",
+        "symfony/console": "^3.4",
+        "symfony/filesystem": "^3.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Softbox\\YiiPermissions\\": "src/",
+            "Console\\": "src/Commands"
+        },
+        "classmap": ["src"]
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "stable"
+}
