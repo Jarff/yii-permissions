@@ -26,5 +26,14 @@ class InstallCommand extends Command
         }else{
             $output->writeln(sprintf('Migrations Folder Doesnt exists'));
         }
+        $output->writeln(sprintf('Copying providers...'));
+        if($filesystem->exists(__DIR__.'/../../../../../protected/clases/Softbox/Providers')){
+            $filesystem->mirror(__DIR__.'/../Providers', __DIR__.'/../../../../../protected/clases/Softbox/Providers');
+            $output->writeln(sprintf('Providers Copied'));
+        }else{
+            $filesystem->mkdir(__DIR__.'/../../../../../protected/clases/Softbox/Providers', 000);
+            $filesystem->mirror(__DIR__.'/../Providers', __DIR__.'/../../../../../protected/clases/Softbox/Providers');
+            $output->writeln(sprintf('Providers Copied'));
+        }
     }
 }

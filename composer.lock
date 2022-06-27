@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "eb9243890c0d9c23a633e6afe95bc229",
+    "content-hash": "9c82e73d4979dc835004af3f02e48c9f",
     "packages": [
         {
             "name": "psr/log",
@@ -55,49 +55,6 @@
                 "source": "https://github.com/php-fig/log/tree/1.1.4"
             },
             "time": "2021-05-03T11:20:27+00:00"
-        },
-        {
-            "name": "soft-box/yii",
-            "version": "1.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Jarff/yii-composer.git",
-                "reference": "253bfe73c50f48a19e5327d2568521a1b4b6bb95"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Jarff/yii-composer/zipball/253bfe73c50f48a19e5327d2568521a1b4b6bb95",
-                "reference": "253bfe73c50f48a19e5327d2568521a1b4b6bb95",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.0.0"
-            },
-            "type": "package",
-            "autoload": {
-                "psr-4": {
-                    "": "framework/"
-                },
-                "classmap": [
-                    "framework"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Rod",
-                    "email": "rodsaseg@gmail.com"
-                }
-            ],
-            "description": "Yii permissions handler",
-            "support": {
-                "issues": "https://github.com/Jarff/yii-composer/issues",
-                "source": "https://github.com/Jarff/yii-composer/tree/1.0.1"
-            },
-            "time": "2022-06-01T18:06:19+00:00"
         },
         {
             "name": "symfony/console",

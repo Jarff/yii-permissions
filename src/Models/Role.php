@@ -1,5 +1,11 @@
 <?php
 namespace Softbox\YiiPermissions\Models;
+require_once __DIR__ . '/../../vendor/autoload.php';
+use Softbox\YiiPermissions\Models\RoleHasPermission;
+use Softbox\YiiPermissions\Models\Permission;
+use CActiveRecord;
+use Yii;
+
 /**
  * This is the model class for table "tbl_users".
  *
@@ -54,6 +60,35 @@ class Role extends CActiveRecord
 		);
 	}
 
+	public function hasPermission(Permission $permission){
+		if(RoleHasPermission::model()->find("role_id=:roleId AND permission_id=:permissionId", [":roleId" => $this->id, ":permissionId" => $permission->id])){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	public function givePermissionTo(Permission $permission){
+		if($this->hasPermission($permission)){
+			return RoleHasPermission::model()->find("role_id=:roleId AND permission_id=:permissionId", [":roleId" => $this->id, ":permissionId" => $permission->id]);
+		}else{
+			$roleHasPermission = new RoleHasPermission();
+			$roleHasPermission->role_id = $this->id;
+			$roleHasPermission->permission_id = $permission->id;
+			if($roleHasPermission->save()){
+				return $roleHasPermission;
+			}else{
+				return null;
+			}
+		}
+	}
+
+	public function revokePermissionTo(Permission $permission){
+		if($this->hasPermission($permission)){
+			RoleHasPermission::model()->deleteAll("role_id=:roleId AND permission_id=:permissionId", [":roleId" => $this->id, ":permissionId" => $permission->id]);
+		}
+	}
+
 	/**
 	 * @return array relational rules.
 	 */
@@ -85,13 +120,18 @@ class Role extends CActiveRecord
 	 * Acciones a ejecutar despues de Guardar
 	 */	
 	public function beforeSave(){
-		//Codigo aqui
-		if($this->ingresarPassword != ''){
-		   //$this->password_user = md5($this->ingresarPassword);
-		   $this->password_user = $this->ingresarPassword;
-		}
-		
 		return parent::beforeSave();
 	}	
+
+	public function behaviors() {
+		return array(
+			'PaginateBehavior' => [
+				'class' => 'application.behaviors.PaginateBehavior'
+			],
+			'ArrayBehavior'=> [
+				'class'=>'application.behaviors.ArrayBehavior'
+			],
+		);
+	}
 	
 }

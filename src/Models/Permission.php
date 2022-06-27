@@ -1,22 +1,12 @@
 <?php
 namespace Softbox\YiiPermissions\Models;
+
 require_once __DIR__ . '/../../vendor/autoload.php';
 use CActiveRecord;
 use Yii;
-/**
- * This is the model class for table "tbl_users".
- *
- * The followings are the available columns in table 'tbl_users':
- * @property integer $role_id
- * @property string $model_type
- * @property integer $model_id
- *
- */
-class ModelHasRole extends CActiveRecord
-{
 
-	
-	/**
+class Permission extends CActiveRecord {
+    /**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
 	 * @return Role the static model class
@@ -26,7 +16,7 @@ class ModelHasRole extends CActiveRecord
 		return parent::model($className);
 	}
 
-	/**
+    /**
 	 * @return CDbConnection database connection
 	 */
 	public function getDbConnection()
@@ -34,15 +24,15 @@ class ModelHasRole extends CActiveRecord
 		return Yii::app()->db;
 	}
 
-	/**
+    	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'model_has_roles';
+		return 'permissions';
 	}
 
-	/**
+    	/**
 	 * @return array validation rules for model attributes.
 	 */
 	public function rules()
@@ -51,11 +41,11 @@ class ModelHasRole extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			// Atributos marcados como seguros
-			array('role_id, model_type, model_id', 'safe'),
+			array('id, name, guard_name, created_at, updated_at', 'safe'),
 		);
 	}
 
-	/**
+    	/**
 	 * @return array relational rules.
 	 */
 	public function relations()
@@ -65,8 +55,11 @@ class ModelHasRole extends CActiveRecord
 		return [];
 	}
 
-	
-	/**
+	public function unsyncFromRoles(){
+		RoleHasPermission::model()->deleteAll("permission_id=:permissionId", [":permissionId" => $this->id]);
+	}
+
+    	/**
 	 * Acciones a ejecutar despues de buscar
 	 */	
 	public function afterFind(){
@@ -86,8 +79,18 @@ class ModelHasRole extends CActiveRecord
 	 * Acciones a ejecutar despues de Guardar
 	 */	
 	public function beforeSave(){
-		//Codigo aqui
+		$this->updated_at = date("Y-m-d H:i:s");
 		return parent::beforeSave();
 	}	
-	
+
+	public function behaviors() {
+		return array(
+			'PaginateBehavior' => [
+				'class' => 'application.behaviors.PaginateBehavior'
+			],
+			'ArrayBehavior'=> [
+				'class'=>'application.behaviors.ArrayBehavior'
+			],
+		);
+	}
 }

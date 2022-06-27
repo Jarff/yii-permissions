@@ -1,14 +1,14 @@
 <?php
 namespace Softbox\YiiPermissions\Models;
+require_once __DIR__ . '/../../vendor/autoload.php';
+use CActiveRecord;
+use Yii;
 /**
  * This is the model class for table "tbl_users".
  *
  * The followings are the available columns in table 'tbl_users':
- * @property integer $id
- * @property string $name
- * @property string $guard_name
- * @property string $created_at
- * @property string $updated_at
+ * @property integer $role_id
+ * @property integer $permission_id
  *
  */
 class RoleHasPermission extends CActiveRecord
@@ -38,7 +38,7 @@ class RoleHasPermission extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'roles';
+		return 'role_has_permissions';
 	}
 
 	/**
@@ -50,7 +50,7 @@ class RoleHasPermission extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			// Atributos marcados como seguros
-			array('permission_id, role_id, guard_name, created_at, updated_at', 'safe'),
+			array('permission_id, role_id', 'safe'),
 		);
 	}
 
@@ -85,12 +85,7 @@ class RoleHasPermission extends CActiveRecord
 	 * Acciones a ejecutar despues de Guardar
 	 */	
 	public function beforeSave(){
-		//Codigo aqui
-		if($this->ingresarPassword != ''){
-		   //$this->password_user = md5($this->ingresarPassword);
-		   $this->password_user = $this->ingresarPassword;
-		}
-		
+		//Codigo aqui	
 		return parent::beforeSave();
 	}	
 	

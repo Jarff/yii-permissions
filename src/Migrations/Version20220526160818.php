@@ -12,12 +12,12 @@ use Doctrine\DBAL\Migrations\AbstractMigration;
  */
 final class Version20220526160818 extends AbstractMigration
 {
-    public function getDescription() : string
+    public function getDescription()
     {
         return '';
     }
 
-    public function up(Schema $schema) : void
+    public function up(Schema $schema)
     {
         $table = $schema->createTable('roles');
         $table->addColumn('id', 'integer', array('autoincrement'=>true));
@@ -33,7 +33,7 @@ final class Version20220526160818 extends AbstractMigration
         $table->setPrimaryKey(['id'], 'PRIMARY');
     }
 
-    public function down(Schema $schema) : void
+    public function down(Schema $schema)
     {
         $schema->dropTable('roles');
     }

@@ -12,12 +12,12 @@ use Doctrine\DBAL\Migrations\AbstractMigration;
  */
 final class Version20220526165333 extends AbstractMigration
 {
-    public function getDescription() : string
+    public function getDescription()
     {
         return '';
     }
 
-    public function up(Schema $schema) : void
+    public function up(Schema $schema)
     {
         $table = $schema->createTable('role_has_permissions');
         $table->addColumn('role_id', 'integer');
@@ -27,7 +27,7 @@ final class Version20220526165333 extends AbstractMigration
         $table->addForeignKeyConstraint('permissions', ['permission_id'], ['id'], ['onDelete' => 'CASCADE'], 'role_has_permissions_permission_id_foreign');
     }
 
-    public function down(Schema $schema) : void
+    public function down(Schema $schema)
     {
         $schema->dropTable('roles');
     }
