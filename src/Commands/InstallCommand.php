@@ -31,9 +31,18 @@ class InstallCommand extends Command
             $filesystem->mirror(__DIR__.'/../Providers', __DIR__.'/../../../../../protected/clases/Softbox/Providers');
             $output->writeln(sprintf('Providers Copied'));
         }else{
-            $filesystem->mkdir(__DIR__.'/../../../../../protected/clases/Softbox/Providers', 000);
+            $filesystem->mkdir(__DIR__.'/../../../../../protected/clases/Softbox/Providers');
             $filesystem->mirror(__DIR__.'/../Providers', __DIR__.'/../../../../../protected/clases/Softbox/Providers');
             $output->writeln(sprintf('Providers Copied'));
+        }
+        $output->writeln(sprintf("Installing components..."));
+        if($filesystem->exists(__DIR__.'/../../../../../protected/components')){
+            $filesystem->mirror(__DIR__.'/../Components', __DIR__.'/../../../../../protected/components');
+            $output->writeln(sprintf('Components Installed'));
+        }else{
+            $filesystem->mkdir(__DIR__.'/../../../../../protected/components');
+            $filesystem->mirror(__DIR__.'/../Components', __DIR__.'/../../../../../protected/components');
+            $output->writeln(sprintf('Components Installed'));
         }
     }
 }

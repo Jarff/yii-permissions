@@ -44,9 +44,9 @@ class PaginateOptions{
                     } //end for
                 } //end if
             } //end for
-                                        
+             
             $fields = implode(",", $fieldsArr);
-            $strSearch = "AND LOWER(CONCAT('".$search[2]."'))";
+            $strSearch = " LOWER(CONCAT('".$q."'))";
                 
             $this->fields = $fields;
             $this->strSearch = $strSearch;

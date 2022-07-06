@@ -21,6 +21,7 @@
         },
         "classmap": ["src"]
     },
+    "bin": ["bin/softbox-permissions"],
     "config": {
         "sort-packages": true
     },

@@ -10,7 +10,7 @@ use Doctrine\DBAL\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20220526160818 extends AbstractMigration
+final class Version10220526163307 extends AbstractMigration
 {
     public function getDescription()
     {
@@ -19,7 +19,7 @@ final class Version20220526160818 extends AbstractMigration
 
     public function up(Schema $schema)
     {
-        $table = $schema->createTable('roles');
+        $table = $schema->createTable('permissions');
         $table->addColumn('id', 'integer', array('autoincrement'=>true));
         $table->addColumn('name', 'string');
         $table->addColumn('guard_name', 'string', ['default' => 'web']);
@@ -35,6 +35,6 @@ final class Version20220526160818 extends AbstractMigration
 
     public function down(Schema $schema)
     {
-        $schema->dropTable('roles');
+        $schema->dropTable('permissions');
     }
 }

@@ -1,6 +1,6 @@
 <?php
 namespace Softbox\YiiPermissions\Models;
-require_once __DIR__ . '/../../vendor/autoload.php';
+require_once __DIR__ . '/../../../../../vendor/autoload.php';
 use Softbox\YiiPermissions\Models\RoleHasPermission;
 use Softbox\YiiPermissions\Models\Permission;
 use CActiveRecord;

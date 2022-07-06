@@ -10,7 +10,7 @@ use Doctrine\DBAL\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20220526165333 extends AbstractMigration
+final class Version10220526165333 extends AbstractMigration
 {
     public function getDescription()
     {
